@@ -8,23 +8,23 @@
     </div>
 </template>
 
-<style scoped>
-    header {
-        width: 100vw;
-        background-color: #121214;
-        padding: 2rem 6rem;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 2px solid #505059;
-    }
+<style scoped lang="scss">
+header {
+    width: 100vw;
+    background-color: #121214;
+    padding: 2rem 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #505059;
 
     input {
-        background-color: #29292E;
+        background-color: #29292e;
         border: 2px solid #505059;
         border-radius: 6px;
         padding: 1rem;
         color: #cdcdcd;
         width: 300px;
     }
+}
 </style>
