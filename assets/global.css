@@ -5,6 +5,11 @@
 }
 
 body {
-    background-image: url("./background.svg");
+    background-color: #202024;
     color: #fff;
+}
+
+:focus {
+    box-shadow: none;
+    outline: 2px solid #EEDB00;
 }
