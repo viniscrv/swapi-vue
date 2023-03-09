@@ -1,0 +1,180 @@
+<script setup>
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+const { id } = useRoute().params;
+
+const { data: movie } = await useFetch(`https://swapi.dev/api/films/${id}/`);
+
+/* ALL CHARACTERS */
+const { data: characters } = await useFetch("https://swapi.dev/api/people");
+</script>
+
+<template>
+    <main>
+        <h2>{{ movie.title }}</h2>
+
+        <div>
+            <div class="content">
+                <h3>Description</h3>
+
+                <p>{{ movie.opening_crawl }}</p>
+
+                <div>
+                    <strong>movie de lançamento</strong>
+                    <span>{{ movie.release_date }}</span>
+
+                    <strong>Diretor</strong>
+                    <span>{{ movie.director }}</span>
+
+                    <strong>Productor</strong>
+                    <span>{{ movie.producer }}</span>
+                </div>
+            </div>
+            <img src="../../assets/movie_posters/episode_2.jpg" />
+        </div>
+
+        <h2>Characters of the movie</h2>
+
+        <!-- ALL CHARATERS -->
+        <Carousel items-to-show="3" class="carousel" wrapAround="true">
+            <Slide
+                v-for="character in characters.results"
+                :key="character.name"
+            >
+                <div class="character-card">
+                    <strong>{{ character.name }}</strong>
+                    <div class="character-card__details">
+                        <span>Data de nascimento</span>
+                        <p>{{ character.birth_year }}</p>
+                        <span>Altura</span>
+                        <p>{{ character.height }}</p>
+                    </div>
+                </div>
+            </Slide>
+
+            <template #addons>
+                <Navigation />
+                <Pagination />
+            </template>
+        </Carousel>
+
+        <h2>Write a review</h2>
+
+        <form>
+            <div>
+                <label>Your name</label>
+                <input type="text" />
+            </div>
+
+            <div>
+                <label>Your E-mail</label>
+                <input type="email" />
+            </div>
+
+            <div>
+                <label>Review</label>
+                <textarea />
+            </div>
+
+            <button>Publish</button>
+        </form>
+    </main>
+</template>
+
+<style scoped lang="scss">
+main {
+    width: 1200px;
+    margin: 0 auto;
+
+    h2 {
+        font-size: 2rem;
+        text-align: center;
+        margin: 4rem 0;
+    }
+    div {
+        display: flex;
+        justify-content: space-between;
+        .content {
+            width: 60%;
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+            }
+        }
+        img {
+            width: 300px;
+            border-radius: 8px;
+        }
+    }
+}
+.character-card {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border: 3px solid #505059;
+    border-radius: 6px;
+    cursor: pointer;
+    .character-card__details {
+        padding: 1rem;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+
+        span {
+            font-weight: bold;
+        }
+    }
+
+    strong {
+        background-color: #29292e;
+        width: 100%;
+        padding: 1rem;
+    }
+
+    &:hover {
+        /* transform: scale(1.02);
+        transition: transform 0.3s; */
+
+        border: 3px solid #eedb00;
+    }
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    input,
+    textarea {
+        background-color: #29292e;
+        border: 2px solid #505059;
+        border-radius: 6px;
+        padding: 1rem;
+        color: #cdcdcd;
+    }
+
+    button {
+        background-color: #eedb00;
+        padding: 15px 30px;
+        border: 0;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}
+</style>
