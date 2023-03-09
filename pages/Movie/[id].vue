@@ -35,12 +35,16 @@ export default {
                     message: "Very good!",
                 },
             ],
+            name: "",
+            message: "",
         };
     },
     methods: {
         publishReview: function (e, name, message) {
             e.preventDefault();
             this.reviews.push({ name, message });
+            this.name = "";
+            this.message = "";
         },
     },
 };
@@ -55,7 +59,7 @@ export default {
 
                 <p>{{ movie.opening_crawl }}</p>
 
-                <div>
+                <div class="content-details">
                     <strong>Data de lançamento</strong>
                     <span>{{ movie.release_date }}</span>
 
@@ -98,12 +102,12 @@ export default {
 
         <form>
             <div>
-                <label>Your name</label>
-                <input type="text" v-model="name" />
+                <label for="name">Your name</label>
+                <input type="text" id="name" v-model="name" />
             </div>
             <div>
-                <label>Review</label>
-                <textarea v-model="message" />
+                <label for="review">Review</label>
+                <textarea id="review" v-model="message" />
             </div>
 
             <button @click="publishReview($event, name, message)">
@@ -143,13 +147,21 @@ main {
             justify-content: flex-start;
             flex-direction: column;
             gap: 1.5rem;
-
             h3 {
                 font-size: 1.5rem;
             }
-
             p {
                 font-size: 1.1rem;
+            }
+            .content-details {
+                display: flex;
+                flex-direction: column;
+                strong {
+                    font-size: 1.1rem;
+                }
+                span {
+                    font-size: 1.02rem;
+                }
             }
         }
         img {
@@ -197,6 +209,9 @@ form {
         gap: 0.8rem;
         width: 100%;
     }
+    label {
+        font-size: 1.2rem;
+    }
     input,
     textarea {
         background-color: #29292e;
@@ -204,6 +219,9 @@ form {
         border-radius: 6px;
         padding: 1rem;
         color: #cdcdcd;
+    }
+    textarea {
+        resize: vertical;
     }
     button {
         background-color: #eedb00;
@@ -229,7 +247,7 @@ form {
         width: 100%;
 
         span {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         &:first-child {

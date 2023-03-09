@@ -89,6 +89,8 @@ const { data: movies } = await useFetch("https://swapi.dev/api/films/");
         padding: 1rem;
     }
     &:hover {
+        transform: scale(0.98);
+        transition: all .2s;
         border: 3px solid #eedb00;
     }
 }
