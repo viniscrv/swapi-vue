@@ -25,10 +25,30 @@ const { data: movie } = await useFetch(`https://swapi.dev/api/films/${id}/`);
 const { data: characters } = await useFetch("https://swapi.dev/api/people");
 </script>
 
+<script>
+export default {
+    data() {
+        return {
+            reviews: [
+                {
+                    name: "John Doe",
+                    message: "Very good!",
+                },
+            ],
+        };
+    },
+    methods: {
+        publishReview: function (e, name, message) {
+            e.preventDefault();
+            this.reviews.push({ name, message });
+        },
+    },
+};
+</script>
+
 <template>
     <main>
         <h2>{{ movie.title }}</h2>
-
         <div>
             <div class="content">
                 <h3>Description</h3>
@@ -79,21 +99,28 @@ const { data: characters } = await useFetch("https://swapi.dev/api/people");
         <form>
             <div>
                 <label>Your name</label>
-                <input type="text" />
+                <input type="text" v-model="name" />
             </div>
-
-            <div>
-                <label>Your E-mail</label>
-                <input type="email" />
-            </div>
-
             <div>
                 <label>Review</label>
-                <textarea />
+                <textarea v-model="message" />
             </div>
 
-            <button>Publish</button>
+            <button @click="publishReview($event, name, message)">
+                Publish
+            </button>
         </form>
+
+        <h2>Reviews</h2>
+
+        <div class="reviews-box">
+            <div v-for="review in reviews" :key="review">
+                <span
+                    ><strong>{{ review.name }}</strong> posted:</span
+                >
+                <p>{{ review.message }}</p>
+            </div>
+        </div>
     </main>
 </template>
 
@@ -150,17 +177,12 @@ main {
             font-weight: bold;
         }
     }
-
     strong {
         background-color: #29292e;
         width: 100%;
         padding: 1rem;
     }
-
     &:hover {
-        /* transform: scale(1.02);
-        transition: transform 0.3s; */
-
         border: 3px solid #eedb00;
     }
 }
@@ -172,9 +194,9 @@ form {
     div {
         display: flex;
         flex-direction: column;
+        gap: 0.8rem;
         width: 100%;
     }
-
     input,
     textarea {
         background-color: #29292e;
@@ -183,7 +205,6 @@ form {
         padding: 1rem;
         color: #cdcdcd;
     }
-
     button {
         background-color: #eedb00;
         padding: 15px 30px;
@@ -191,6 +212,29 @@ form {
         border-radius: 6px;
         cursor: pointer;
         font-weight: bold;
+    }
+}
+
+.reviews-box {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+
+    div {
+        border-bottom: 2px solid #505059;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 10px;
+        width: 100%;
+
+        span {
+            font-size: 1.2rem;
+        }
+
+        &:first-child {
+            border-top: 2px solid #505059;
+        }
     }
 }
 </style>

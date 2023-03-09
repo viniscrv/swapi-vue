@@ -9,6 +9,7 @@
 </template>
 
 <style scoped lang="scss">
+
 header {
     width: 100vw;
     background-color: #121214;
@@ -30,7 +31,6 @@ header {
             cursor: not-allowed;
         }
     }
-
     a {
         text-decoration: none;
         color: #cdcdcd;

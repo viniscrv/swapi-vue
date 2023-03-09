@@ -16,7 +16,6 @@ const moviePosters = [
     episode5,
     episode6,
 ];
-
 const { data: movies } = await useFetch("https://swapi.dev/api/films/");
 </script>
 
@@ -66,7 +65,6 @@ const { data: movies } = await useFetch("https://swapi.dev/api/films/");
     cursor: pointer;
     text-decoration: none;
     color: #cdcdcd;
-
     img {
         width: 100%;
         height: 394px;
@@ -85,13 +83,11 @@ const { data: movies } = await useFetch("https://swapi.dev/api/films/");
             font-weight: bold;
         }
     }
-
     strong {
         background-color: #29292e;
         width: 100%;
         padding: 1rem;
     }
-
     &:hover {
         border: 3px solid #eedb00;
     }
