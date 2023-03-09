@@ -1,5 +1,6 @@
 <script setup>
 import Movies from "../components/Movies.vue";
+import Characters from "~~/components/Characters.vue";
 </script>
 
 <template>
@@ -9,7 +10,9 @@ import Movies from "../components/Movies.vue";
             <Movies />
         </div>
         <h2>Characters</h2>
-        <div></div>
+        <div>
+            <Characters />
+        </div>
     </main>
 </template>
 
