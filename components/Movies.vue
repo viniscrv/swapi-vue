@@ -1,45 +1,38 @@
-<script>
+<script setup>
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 
-export default {
-    name: "App",
-    components: {
-        Carousel,
-        Slide,
-        Pagination,
-        Navigation,
-    },
-};
+const { data: movies } = await useFetch("https://swapi.dev/api/films/");
 </script>
 
 <template>
-    <Carousel items-to-show="3" class="carousel" wrapAround="true" >
-        <Slide v-for="slide in 6" :key="slide">
-            <div class="movie-card">
-                <img src="../assets/movie_posters/episode_1.jpg" alt="" />
-                <strong>movie name</strong>
-                <div class="movie-card__details">
-                    <span>Data de lançamento</span>
-                    <p>01/01/0001</p>
-                    <span>Diretor</span>
-                    <p>director name</p>
+    <main>
+        <Carousel items-to-show="3" class="carousel" wrapAround="true">
+            <Slide v-for="movie in movies.results" :key="movie.episode_id">
+                <div class="movie-card">
+                    <img
+                        src="../assets/movie_posters/episode_2.jpg"
+                        :alt="`${movie.title}`"
+                    />
+                    <strong>{{ movie.title }}</strong>
+                    <div class="movie-card__details">
+                        <span>Data de lançamento</span>
+                        <p>{{ movie.release_date }}</p>
+                        <span>Diretor</span>
+                        <p>{{ movie.director }}</p>
+                    </div>
                 </div>
-            </div>
-        </Slide>
+            </Slide>
 
-        <template #addons>
-            <Navigation />
-            <Pagination />
-        </template>
-    </Carousel>
+            <template #addons>
+                <Navigation />
+                <Pagination />
+            </template>
+        </Carousel>
+    </main>
 </template>
 
 <style scoped lang="scss">
-
-.carousel {
-    margin: 2rem 0;
-}
 .movie-card {
     width: 300px;
     display: flex;
@@ -72,10 +65,10 @@ export default {
     }
 
     &:hover {
-        transform: scale(1.02);
-        transition: transform 0.3s;
+        /* transform: scale(1.02);
+        transition: transform 0.3s; */
 
-        outline: 2px solid #eedb00;
+        border: 3px solid #eedb00;
     }
 }
 </style>
