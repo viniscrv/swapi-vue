@@ -1,45 +1,45 @@
+<script>
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+
+export default {
+    name: "App",
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+        Navigation,
+    },
+};
+</script>
+
 <template>
-    <main>
-        <div class="movie-card">
-            <img src="../assets/movie_posters/episode_1.jpg" alt="" />
-            <strong>movie name</strong>
-            <div class="movie-card__details">
-                <span>Data de lançamento</span>
-                <p>01/01/0001</p>
-                <span>Diretor</span>
-                <p>director name</p>
+    <Carousel items-to-show="3" class="carousel" wrapAround="true" >
+        <Slide v-for="slide in 6" :key="slide">
+            <div class="movie-card">
+                <img src="../assets/movie_posters/episode_1.jpg" alt="" />
+                <strong>movie name</strong>
+                <div class="movie-card__details">
+                    <span>Data de lançamento</span>
+                    <p>01/01/0001</p>
+                    <span>Diretor</span>
+                    <p>director name</p>
+                </div>
             </div>
-        </div>
-        <div class="movie-card">
-            <img src="../assets/movie_posters/episode_1.jpg" alt="" />
-            <strong>movie name</strong>
-            <div class="movie-card__details">
-                <span>Data de lançamento</span>
-                <p>01/01/0001</p>
-                <span>Diretor</span>
-                <p>director name</p>
-            </div>
-        </div>
-        <div class="movie-card">
-            <img src="../assets/movie_posters/episode_1.jpg" alt="" />
-            <strong>movie name</strong>
-            <div class="movie-card__details">
-                <span>Data de lançamento</span>
-                <p>01/01/0001</p>
-                <span>Diretor</span>
-                <p>director name</p>
-            </div>
-        </div>
-    </main>
+        </Slide>
+
+        <template #addons>
+            <Navigation />
+            <Pagination />
+        </template>
+    </Carousel>
 </template>
 
 <style scoped lang="scss">
-main {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
 
+.carousel {
+    margin: 2rem 0;
+}
 .movie-card {
     width: 300px;
     display: flex;
