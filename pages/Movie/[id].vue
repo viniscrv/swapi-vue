@@ -1,6 +1,22 @@
 <script setup>
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
+import episode1 from "../../assets/movie_posters/episode_1.jpg";
+import episode2 from "../../assets/movie_posters/episode_2.jpg";
+import episode3 from "../../assets/movie_posters/episode_3.jpg";
+import episode4 from "../../assets/movie_posters/episode_4.jpg";
+import episode5 from "../../assets/movie_posters/episode_5.jpg";
+import episode6 from "../../assets/movie_posters/episode_6.jpg";
+
+const moviePosters = [
+    episode1,
+    episode2,
+    episode3,
+    episode4,
+    episode5,
+    episode6,
+];
+
 const { id } = useRoute().params;
 
 const { data: movie } = await useFetch(`https://swapi.dev/api/films/${id}/`);
@@ -20,7 +36,7 @@ const { data: characters } = await useFetch("https://swapi.dev/api/people");
                 <p>{{ movie.opening_crawl }}</p>
 
                 <div>
-                    <strong>movie de lançamento</strong>
+                    <strong>Data de lançamento</strong>
                     <span>{{ movie.release_date }}</span>
 
                     <strong>Diretor</strong>
@@ -30,7 +46,7 @@ const { data: characters } = await useFetch("https://swapi.dev/api/people");
                     <span>{{ movie.producer }}</span>
                 </div>
             </div>
-            <img src="../../assets/movie_posters/episode_2.jpg" />
+            <img :src="moviePosters[movie.episode_id - 1]" />
         </div>
 
         <h2>Characters of the movie</h2>

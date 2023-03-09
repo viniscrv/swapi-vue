@@ -1,7 +1,7 @@
 <template>
     <header>
-        <h1>Star Wars Universe</h1>
-        <input type="text" placeholder="Pesquisar personagens" />
+        <NuxtLink to="/"><h1>Star Wars Universe</h1></NuxtLink>
+        <input type="text" placeholder="Pesquisar personagens" disabled />
     </header>
     <div>
         <slot />
@@ -25,6 +25,15 @@ header {
         padding: 1rem;
         color: #cdcdcd;
         width: 300px;
+
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: #cdcdcd;
     }
 }
 </style>

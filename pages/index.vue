@@ -6,13 +6,9 @@ import Characters from "~~/components/Characters.vue";
 <template>
     <main>
         <h2>Movies</h2>
-        <div>
-            <Movies />
-        </div>
+        <Movies />
         <h2>Characters</h2>
-        <div>
-            <Characters />
-        </div>
+        <Characters />
     </main>
 </template>
 
