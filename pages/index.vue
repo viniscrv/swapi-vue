@@ -4,6 +4,9 @@ import Characters from "~~/components/Characters.vue";
 </script>
 
 <template>
+    <Head>
+        <Title>Star Wars Universe</Title>
+    </Head>
     <main>
         <h2>Movies</h2>
         <Movies />

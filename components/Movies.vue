@@ -26,6 +26,8 @@ const { data: movies } = await useFetch("https://swapi.dev/api/films/");
             class="carousel"
             wrapAround="true"
             snapAlign="start"
+            autoplay="3000"
+            pauseAutoplayOnHover="true"
         >
             <Slide
                 v-for="(movie, index) in movies.results"
@@ -38,9 +40,9 @@ const { data: movies } = await useFetch("https://swapi.dev/api/films/");
                     />
                     <strong>{{ movie.title }}</strong>
                     <div class="movie-card__details">
-                        <span>Data de lançamento</span>
+                        <span>Release Date</span>
                         <p>{{ movie.release_date }}</p>
-                        <span>Diretor</span>
+                        <span>Director</span>
                         <p>{{ movie.director }}</p>
                     </div>
                 </NuxtLink>
@@ -59,7 +61,7 @@ const { data: movies } = await useFetch("https://swapi.dev/api/films/");
     width: 300px;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     border: 3px solid #505059;
     border-radius: 6px;
     cursor: pointer;
@@ -90,7 +92,7 @@ const { data: movies } = await useFetch("https://swapi.dev/api/films/");
     }
     &:hover {
         transform: scale(0.98);
-        transition: all .2s;
+        transition: all 0.2s;
         border: 3px solid #eedb00;
     }
 }

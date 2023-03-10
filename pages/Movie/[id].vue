@@ -42,15 +42,21 @@ export default {
     methods: {
         publishReview: function (e, name, message) {
             e.preventDefault();
-            this.reviews.push({ name, message });
-            this.name = "";
-            this.message = "";
+
+            if (name !== "" || message !== "") {
+                this.reviews.push({ name, message });
+                this.name = "";
+                this.message = "";
+            }
         },
     },
 };
 </script>
 
 <template>
+    <Head>
+        <Title>{{ movie.title }}</Title>
+    </Head>
     <main>
         <h2>{{ movie.title }}</h2>
         <div>
@@ -60,13 +66,13 @@ export default {
                 <p>{{ movie.opening_crawl }}</p>
 
                 <div class="content-details">
-                    <strong>Data de lançamento</strong>
+                    <strong>Release Date</strong>
                     <span>{{ movie.release_date }}</span>
 
-                    <strong>Diretor</strong>
+                    <strong>Director</strong>
                     <span>{{ movie.director }}</span>
 
-                    <strong>Productor</strong>
+                    <strong>Producer</strong>
                     <span>{{ movie.producer }}</span>
                 </div>
             </div>
@@ -76,7 +82,13 @@ export default {
         <h2>Characters of the movie</h2>
 
         <!-- ALL CHARATERS -->
-        <Carousel items-to-show="3" class="carousel" wrapAround="true">
+        <Carousel
+            items-to-show="3"
+            class="carousel"
+            wrapAround="true"
+            autoplay="3000"
+            pauseAutoplayOnHover="true"
+        >
             <Slide
                 v-for="character in characters.results"
                 :key="character.name"
@@ -84,9 +96,9 @@ export default {
                 <div class="character-card">
                     <strong>{{ character.name }}</strong>
                     <div class="character-card__details">
-                        <span>Data de nascimento</span>
+                        <span>Birth year</span>
                         <p>{{ character.birth_year }}</p>
-                        <span>Altura</span>
+                        <span>Height</span>
                         <p>{{ character.height }}</p>
                     </div>
                 </div>
@@ -174,7 +186,7 @@ main {
     width: 300px;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     border: 3px solid #505059;
     border-radius: 6px;
     cursor: pointer;
@@ -214,18 +226,19 @@ form {
     }
     input,
     textarea {
-        background-color: #29292e;
+        background-color: #161618;
         border: 2px solid #505059;
         border-radius: 6px;
         padding: 1rem;
         color: #cdcdcd;
     }
     textarea {
+        height: 4rem;
         resize: vertical;
     }
     button {
         background-color: #eedb00;
-        padding: 15px 30px;
+        padding: 1rem;
         border: 0;
         border-radius: 6px;
         cursor: pointer;

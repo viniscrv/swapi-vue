@@ -17,6 +17,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     border-bottom: 2px solid #505059;
 
     input {
@@ -34,6 +35,13 @@ header {
     a {
         text-decoration: none;
         color: #cdcdcd;
+    }
+
+    h1 {
+        transition: all .5s;
+        &:hover {
+            color: #eede31;
+        }
     }
 }
 </style>

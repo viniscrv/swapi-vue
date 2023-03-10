@@ -15,9 +15,9 @@ const { data: characters } = await useFetch("https://swapi.dev/api/people");
                 <div class="character-card">
                     <strong>{{ character.name }}</strong>
                     <div class="character-card__details">
-                        <span>Data de nascimento</span>
+                        <span>Birth year</span>
                         <p>{{ character.birth_year }}</p>
-                        <span>Altura</span>
+                        <span>Height</span>
                         <p>{{ character.height }}</p>
                     </div>
                 </div>
@@ -36,7 +36,7 @@ const { data: characters } = await useFetch("https://swapi.dev/api/people");
     width: 300px;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     border: 3px solid #505059;
     border-radius: 6px;
     cursor: pointer;
